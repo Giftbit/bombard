@@ -1,6 +1,6 @@
 {
   "name": "bombard",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Load Testing with Artillery.io through AWS Lambda. Motivated by Hassy Veldstra's Artillery-Dino project",
   "engines": {
     "node": ">= 4.2.0"
@@ -41,6 +41,7 @@
     "aws-sdk": "^2.7.7",
     "lodash": "4.5.0",
     "bower": "^1.8.0",
+    "yargs": "^4.1.0",
     "stats-lite": "2.0.0"
   },
   "devDependencies": {
@@ -66,7 +67,6 @@
     "typescript": "^2.0.9",
     "webpack": "^1.14.0",
     "webpack-fail-plugin": "^1.0.5",
-    "yargs": "^4.1.0",
     "zip-webpack-plugin": "^0.3.0"
   }
 }

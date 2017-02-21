@@ -50,17 +50,13 @@ You will need an AWS account. You must have sufficient privileges on your AWS ac
 
 ## Setup
 
-- Clone the repo `git clone git@github.com:Giftbit/bombard.git`.
-
-- Install dependencies `npm install`
+- Install with `npm install -g bombard`
 
 - Deploy the CloudFormation stack: 
 
     [![Setup Bombard using CloudFormation](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=Bombard&templateURL=https://giftbit-public-resources.s3.amazonaws.com/cloudformation/bombard/bombard.0.1.0.yaml)
 
-- Install ts-node globally `npm install ts-node -g`.
-
-- Run `./bin/config.ts`. This will create a `./config.json` file with information about your newly created CloudFormation Stack. (Use `./bin/config.ts -s StackName` if you did not use the default stack name.)  
+- In a work directory, run `bombared-setup`. This will create a `./config.json` file with information about your newly created CloudFormation Stack. (Use `bombard-setup-s StackName` if you did not use the default stack name.)  
 
 ## Advanced Setup
 
@@ -83,9 +79,9 @@ Create a CloudFormation Stack using `./CloudFormation/bombard.yaml`. This will:
 
 ## Usage 
 
-`./bin/bombard.ts --script script.json -n 1`
+`bombard --script script.json -n 1`
 
-Note: You will require AWS credentials with permissions to invoke the lambda and to read the SQS queue. 
+Note: You will require AWS credentials with permissions to invoke the lambda and to read the SQS queue. This must be run from the same directory as your `config.json` file.  
 
 ### Example Script
 
