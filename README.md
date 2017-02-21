@@ -56,7 +56,7 @@ You will need an AWS account. You must have sufficient privileges on your AWS ac
 
     [![Setup Bombard using CloudFormation](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=Bombard&templateURL=https://giftbit-public-resources.s3.amazonaws.com/cloudformation/bombard/bombard.0.1.0.yaml)
 
-- In a work directory, run `bombared-setup`. This will create a `./config.json` file with information about your newly created CloudFormation Stack. (Use `bombard-setup-s StackName` if you did not use the default stack name.)  
+- In a work directory, run `bombard-setup`. This will create a `./config.json` file with information about your newly created CloudFormation Stack. (Use `bombard-setup -s StackName` if you did not use the default stack name.)  
 
 ## Advanced Setup
 

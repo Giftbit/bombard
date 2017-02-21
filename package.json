@@ -1,6 +1,6 @@
 {
   "name": "bombard",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Load Testing with Artillery.io through AWS Lambda. Motivated by Hassy Veldstra's Artillery-Dino project",
   "engines": {
     "node": ">= 4.2.0"
