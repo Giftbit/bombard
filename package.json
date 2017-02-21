@@ -1,13 +1,13 @@
 {
   "name": "bombard",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Load Testing with Artillery.io through AWS Lambda. Motivated by Hassy Veldstra's Artillery-Dino project",
   "engines": {
     "node": ">= 4.2.0"
   },
   "bin": {
-    "bombard": "ts-node bin/bombard.ts",
-    "bombard-setup": "ts-node bin/config.ts"
+    "bombard.ts": "bin/bombard.ts",
+    "bombard-setup.ts": "bin/config.ts"
   },
   "scripts": {
     "test": "mocha --recursive --throw-deprecation --require ts-node/register \"src/**/*.test.ts\"",
