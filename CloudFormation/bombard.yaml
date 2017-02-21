@@ -1,0 +1,129 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Create the Bombard Lambda and soociated SNS Topic and SQS queue
+Parameters:
+  LambdaZipS3Key:
+    Type: String
+    Description: Location of the code for the Lambda Function. Must be in s3.
+    Default: cloudformation/bombard/lambda/bombard.0.1.0.zip
+  LambdaZipS3Bucket:
+    Type: String
+    Description: Location of the code for the Lambda Function. Must be in s3.
+    Default: giftbit-public-resources
+Resources:
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Action:
+              - "sts:AssumeRole"
+            Principal:
+              Service:
+                - "lambda.amazonaws.com"
+  LambdaRolePolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: "bombard"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Action: "sns:Publish"
+            Resource: !Ref IntermediateSNS
+          -
+            Effect: "Allow"
+            Action:
+              - "logs:CreateLogGroup"
+              - "logs:CreateLogStream"
+              - "logs:PutLogEvents"
+            Resource: "arn:aws:logs:*:*:*"
+      Roles:
+        -
+          !Ref "LambdaRole"
+  BombardFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Timeout: 300
+      Handler: "index.default"
+      Runtime: "nodejs4.3"
+      Role:
+        Fn::GetAtt:
+          - "LambdaRole"
+          - "Arn"
+      CodeUri:
+        Bucket: !Ref LambdaZipS3Bucket
+        Key: !Ref LambdaZipS3Key
+      Environment:
+        Variables:
+          SNS_TOPIC_ARN: !Ref IntermediateSNS
+  IntermediateSNS:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: bombard
+      Subscription:
+        -
+          Endpoint:
+            Fn::GetAtt:
+              - "IntermediateQueue"
+              - "Arn"
+          Protocol: "sqs"
+  IntermediateQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      MessageRetentionPeriod: 3600
+  IntermediateQueuePolicy:
+    Type: "AWS::SQS::QueuePolicy"
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal: "*"
+            Action:
+              -
+                "sqs:SendMessage"
+            Resource:
+              Fn::GetAtt:
+                - "IntermediateQueue"
+                - "Arn"
+            Condition:
+              ArnEquals:
+                aws:SourceArn: !Ref IntermediateSNS
+      Queues:
+        -
+          !Ref IntermediateQueue
+Outputs:
+  QueueURL:
+    Description: "URL of Intermediate Results Queue"
+    Value:
+      !Ref "IntermediateQueue"
+  QueueARN:
+    Description: "Arn of Intermediate Results Queue"
+    Value:
+      Fn::GetAtt:
+        - "IntermediateQueue"
+        - "Arn"
+  LambdaARN:
+    Description: "Arn of the lambda function"
+    Value:
+      Fn::GetAtt:
+        - "BombardFunction"
+        - "Arn"
+  LambdaName:
+    Description: "Name of the lambda function"
+    Value:
+      !Ref "BombardFunction"
+  SnsARN:
+    Description: "Arn of the SNS Topic"
+    Value:
+      !Ref "IntermediateSNS"
+  CloudWatchLogArn:
+      Description: "Arn of the CloudWatch Logs log group that the Lambda will log too."
+      Value:
+        !Join [ "" , ["arn:aws:logs:", !Ref "AWS::Region", ":", !Ref "AWS::AccountId" , ":/aws/lambda/", !Ref "BombardFunction"]]

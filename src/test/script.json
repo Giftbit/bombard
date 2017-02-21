@@ -1,0 +1,21 @@
+{
+  "config": {
+    "target": "https://currency.giftbit.com",
+    "phases": [{
+      "duration": 60,
+      "arrivalCount": 20
+    }]
+  },
+  "scenarios": [
+    {
+      "name": "Basic Request",
+      "flow": [
+        {
+          "get": {
+            "url": "/"
+          }
+        }
+      ]
+    }
+  ]
+}
