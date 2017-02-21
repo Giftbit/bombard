@@ -3,5 +3,5 @@
 node_modules
 typings
 config.json
-lambda/lib
+lib/lambda
 scripts/*

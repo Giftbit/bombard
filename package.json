@@ -1,24 +1,24 @@
 {
   "name": "bombard",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "Load Testing with Artillery.io through AWS Lambda. Motivated by Hassy Veldstra's Artillery-Dino project",
   "engines": {
     "node": ">= 4.2.0"
   },
   "bin": {
-    "bombard.ts": "bin/bombard.ts",
-    "bombard-setup.ts": "bin/config.ts"
+    "bombard": "lib/bombard/index.js",
+    "bombard-setup": "lib/config/index.js"
   },
   "scripts": {
     "test": "mocha --recursive --throw-deprecation --require ts-node/register \"src/**/*.test.ts\"",
-    "build": "webpack"
+    "build": "webpack; tsc"
   },
   "author": "Graham Baradoy graham@giftbit.com",
   "keywords": [
     "load testing",
     "stress testing"
   ],
-  "repoitory": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/Giftbit/bombard"
   },
@@ -33,10 +33,14 @@
     "@types/csv-parse": "^1.1.6",
     "@types/lodash": "^4.14.52",
     "@types/uuid": "^2.0.29",
+    "uuid": "^3.0.1",
+    "fs": "0.0.1-security",
+    "csv-parse": "^1.0.1",
     "artillery-core": "^2.3.1",
     "async": "1.5.2",
     "aws-sdk": "^2.7.7",
     "lodash": "4.5.0",
+    "bower": "^1.8.0",
     "stats-lite": "2.0.0"
   },
   "devDependencies": {
@@ -50,21 +54,16 @@
     "babel-loader": "^6.2.8",
     "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.18.0",
-    "bower": "^1.8.0",
     "chai": "^3.5.0",
     "cheerio": "^0.20.0",
-    "csv-parse": "^1.0.1",
     "debug": "2.2.0",
     "eslint": "^0.24.0",
     "file-loader": "^0.9.0",
-    "fs": "0.0.1-security",
     "json-loader": "^0.5.4",
     "mocha": "^3.2.0",
-    "pre-commit": "^1.0.7",
     "ts-loader": "^1.2.0",
     "ts-node": "^1.7.0",
     "typescript": "^2.0.9",
-    "uuid": "^3.0.1",
     "webpack": "^1.14.0",
     "webpack-fail-plugin": "^1.0.5",
     "yargs": "^4.1.0",

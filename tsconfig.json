@@ -3,7 +3,16 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
+    "outDir": "lib",
     "noImplicitAny": false,
     "sourceMap": false
-  }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "src/lambda/*"
+  ]
 }

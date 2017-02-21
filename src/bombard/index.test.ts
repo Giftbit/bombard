@@ -1,7 +1,7 @@
 import * as index from "./"
 import * as chai from "chai";
-import {IntermediatePayload} from "../../interfaces/IntermediatePayload";
-import {AggregateStats} from "../../interfaces/AggregateStats";
+import {IntermediatePayload} from "../interfaces/IntermediatePayload";
+import {AggregateStats} from "../interfaces/AggregateStats";
 
 describe("Bombard Command", () => {
     it("Simple Read JSON", () => {

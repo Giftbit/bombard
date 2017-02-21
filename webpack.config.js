@@ -2,7 +2,7 @@ var failPlugin = require('webpack-fail-plugin');
 var ZipPlugin = require('zip-webpack-plugin');
 
 module.exports = {
-    entry: './lambda/src/index.ts',
+    entry: './src/lambda/index.ts',
     target: 'node',
     node: {
         // Allow these globals.
@@ -10,7 +10,7 @@ module.exports = {
         __dirname: false
     },
     output: {
-        path: './lambda/lib',
+        path: './lib/lambda',
         filename: 'index.js',
         libraryTarget: 'commonjs2'
     },
