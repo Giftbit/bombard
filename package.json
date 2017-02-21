@@ -1,13 +1,13 @@
 {
   "name": "bombard",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Load Testing with Artillery.io through AWS Lambda. Motivated by Hassy Veldstra's Artillery-Dino project",
   "engines": {
     "node": ">= 4.2.0"
   },
   "bin": {
-    "bombard": "bin/bombard.ts",
-    "bombard-setup": "bin/config.ts"
+    "bombard": "ts-node bin/bombard.ts",
+    "bombard-setup": "ts-node bin/config.ts"
   },
   "scripts": {
     "test": "mocha --recursive --throw-deprecation --require ts-node/register \"src/**/*.test.ts\"",
@@ -18,12 +18,12 @@
     "load testing",
     "stress testing"
   ],
-  "repoitory" : {
+  "repoitory": {
     "type": "git",
-    "url": "https://github.com/Giftbit/bombard.git"
+    "url": "https://github.com/Giftbit/bombard"
   },
   "bugs": {
-    "url" : "https://github.com/Giftbit/bombard/issues",
+    "url": "https://github.com/Giftbit/bombard/issues",
     "email": "graham@giftbit.com"
   },
   "license": "MPL-2.0",
@@ -42,31 +42,32 @@
   "devDependencies": {
     "@types/chai": "^3.4.34",
     "@types/mocha": "^2.2.38",
-    "@types/yargs": "^6.3.1",
-    "@types/sqs-consumer": "0.0.5",
     "@types/node": "^6.0.51",
+    "@types/sqs-consumer": "0.0.5",
+    "@types/yargs": "^6.3.1",
+    "babel-cli": "^6.23.0",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
     "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.18.0",
-    "json-loader": "^0.5.4",
-    "file-loader": "^0.9.0",
+    "bower": "^1.8.0",
+    "chai": "^3.5.0",
+    "cheerio": "^0.20.0",
     "csv-parse": "^1.0.1",
-    "fs": "0.0.1-security",
     "debug": "2.2.0",
-    "uuid": "^3.0.1",
-    "yargs": "^4.1.0",
+    "eslint": "^0.24.0",
+    "file-loader": "^0.9.0",
+    "fs": "0.0.1-security",
+    "json-loader": "^0.5.4",
+    "mocha": "^3.2.0",
+    "pre-commit": "^1.0.7",
     "ts-loader": "^1.2.0",
     "ts-node": "^1.7.0",
-    "cheerio": "^0.20.0",
-    "bower": "^1.8.0",
-    "mocha": "^3.2.0",
-    "chai": "^3.5.0",
     "typescript": "^2.0.9",
-    "eslint": "^0.24.0",
+    "uuid": "^3.0.1",
     "webpack": "^1.14.0",
     "webpack-fail-plugin": "^1.0.5",
-    "pre-commit": "^1.0.7",
+    "yargs": "^4.1.0",
     "zip-webpack-plugin": "^0.3.0"
   }
 }
