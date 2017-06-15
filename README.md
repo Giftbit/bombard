@@ -68,7 +68,7 @@ The source for the lambda script can be found in `lambda/src`. Build your own la
 
 You can aquire an already zipped lambda function from https://s3-us-west-2.amazonaws.com/giftbit-public-resources/cloudformation/bombard/lambda/bombard.0.1.0.zip
 
-Upload the zipped file to an s3 bucket you control, in the region that with to use. You will need to change the `LambdaZipS3Key` and `LambdaZipS3Bucket` parameters of the CloudFormation template to point to the new zip file. 
+Upload the zipped file to an s3 bucket you control, in the region that you wish to use. You will need to change the `LambdaZipS3Key` and `LambdaZipS3Bucket` parameters of the CloudFormation template to point to the new zip file. 
 
 ### Deploy CloudFormation Template
 
