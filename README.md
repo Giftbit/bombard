@@ -52,7 +52,7 @@ You will need an AWS account. You must have sufficient privileges on your AWS ac
 
 - Install with `npm install -g bombard`
 
-- Deploy the CloudFormation stack: 
+- Deploy the CloudFormation stack in the us-west-2 region: 
 
     [![Setup Bombard using CloudFormation](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=Bombard&templateURL=https://giftbit-public-resources.s3.amazonaws.com/cloudformation/bombard/bombard.0.1.0.yaml)
 
@@ -60,13 +60,15 @@ You will need an AWS account. You must have sufficient privileges on your AWS ac
 
 ## Advanced Setup
 
-If you would like to make changes to the CloudFormation template, do not wish to run the template from the above link, or would like to build your own lambda, use the following steps.  
+If you would like to make changes to the CloudFormation template, do not wish to run the template from the above link, would like to use a region other than us-west-2 or would like to build your own lambda, use the following steps.  
 
-### Build You Own Lambda
+### Build You Own Lambda Or Use a Different Region
 
 The source for the lambda script can be found in `lambda/src`. Build your own lambda by calling ```npm run build```. The resulting index.js will be in `lambda/lib`. The zipped file will be in `lambda/lib/zip`. 
 
-If you have build your own lambda, upload the zipped file to an s3 bucket you control. You will need to change the `LambdaZipS3Key` and `LambdaZipS3Bucket` parameters of the CloudFormation template to point to the new zip file. 
+You can aquire an already zipped lambda function from https://s3-us-west-2.amazonaws.com/giftbit-public-resources/cloudformation/bombard/lambda/bombard.0.1.0.zip
+
+Upload the zipped file to an s3 bucket you control, in the region that with to use. You will need to change the `LambdaZipS3Key` and `LambdaZipS3Bucket` parameters of the CloudFormation template to point to the new zip file. 
 
 ### Deploy CloudFormation Template
 
